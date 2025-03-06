@@ -1,3 +1,4 @@
+import config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,6 @@ public class FirstTest {
     WebDriver driver;
     private String textToEnter = "ОТУС";
     private static final Logger logger = LogManager.getLogger(FirstTest.class);
-    String base_url = "https://otus.home.kartushin.su/training.html";
 
     @BeforeAll
     public static void webDriverInstall() {
@@ -30,7 +30,7 @@ public class FirstTest {
 
     @Test
     public void name() {
-        driver.get(base_url);
+        driver.get(ConfigLoader.getBaseUrl());
         logger.warn("Я тут");
         WebElement textInput = driver.findElement(By.id("textInput"));
         textInput.sendKeys(textToEnter);

@@ -1,4 +1,5 @@
 
+import config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,6 @@ public class KioskTest {
 
     private WebDriver driver;
     private static final Logger logger = LogManager.getLogger(KioskTest.class);
-    private  String base_url = "https://otus.home.kartushin.su/training.html";
 
     @BeforeAll
     public static void webDriverInstall() {
@@ -31,7 +31,7 @@ public class KioskTest {
 
     @Test
     public void name(){
-        driver.get(base_url);
+        driver.get(ConfigLoader.getBaseUrl());
         WebElement textInput = driver.findElement(By.id("openModalBtn"));
         boolean textInputDisplayed = textInput.isDisplayed();
         if (textInputDisplayed){
