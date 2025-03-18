@@ -1,4 +1,3 @@
-import config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +12,7 @@ public class LoginTest {
 
     private WebDriver driver;
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
-
+    private String baseUrl;
     @BeforeAll
     public static void webDriverInstall() {
         WebDriverManager.chromedriver().setup();
@@ -24,13 +23,14 @@ public class LoginTest {
     public void webDriverStart() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        baseUrl = System.getProperty("base.url");
     }
 
     @Test
     public void name() {
         var email = "test@test.ru";
         var name = "tes1";
-        driver.get(ConfigLoader.getBaseUrl());
+        driver.get(baseUrl);
         WebElement textInput = driver.findElement(By.id("name"));
         textInput.sendKeys(name);
         WebElement element = driver.findElement(By.id("email"));

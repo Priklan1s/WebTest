@@ -1,8 +1,10 @@
-import config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,7 @@ public class FirstTest {
     WebDriver driver;
     private String textToEnter = "ОТУС";
     private static final Logger logger = LogManager.getLogger(FirstTest.class);
+    private String baseUrl;
 
     @BeforeAll
     public static void webDriverInstall() {
@@ -23,6 +26,7 @@ public class FirstTest {
     }
     @BeforeEach
     public void webDriverStart() {
+        baseUrl = System.getProperty("base.url");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         driver = new ChromeDriver(options);
@@ -30,7 +34,7 @@ public class FirstTest {
 
     @Test
     public void name() {
-        driver.get(ConfigLoader.getBaseUrl());
+        driver.get(baseUrl);
         logger.warn("Я тут");
         WebElement textInput = driver.findElement(By.id("textInput"));
         textInput.sendKeys(textToEnter);

@@ -91,7 +91,7 @@
                 <version>${surefire.plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <base.url>https://otus.home.kartushin.su/form.html</base.url>
+                        <base.url>https://otus.home.kartushin.su/training.html</base.url>
                         <browser>chrome</browser>
                         <password>12345</password>
                     </systemPropertyVariables>
